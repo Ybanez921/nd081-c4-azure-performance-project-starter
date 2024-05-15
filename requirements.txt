@@ -6,3 +6,4 @@ opencensus
 opencensus-ext-logging
 testresources
 opencensus-ext-requests
+itsdangerous==2.0.1
