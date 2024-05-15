@@ -7,3 +7,4 @@ opencensus-ext-logging
 testresources
 opencensus-ext-requests
 itsdangerous==2.0.1
+werkzeug==2.0.3
