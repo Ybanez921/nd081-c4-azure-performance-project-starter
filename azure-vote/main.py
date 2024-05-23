@@ -16,7 +16,7 @@ from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 
-conn_string = 'InstrumentationKey=93e860e6-138a-49a4-a525-5e77d7a6b425;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=682d37a2-41a3-494d-b520-76d811b4f74a'
+conn_string = 'InstrumentationKey=4346fc99-601d-4235-aeac-bc6f7b7227eb;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=9396217f-1ef0-4f84-aeca-5a110c7dd54a'
 # Logging
 logger = logging.getLogger(__name__)
 # Logging custom Events 
@@ -82,10 +82,14 @@ def index():
     if request.method == 'GET':
 
         # Get current values
+        # Get current values
         vote1 = r.get(button1).decode('utf-8')
-        tracer.span(name='Cats Vote')
+        with tracer.span(name="Cats Vote") as span:
+           print("Cats Vote")
+        # tracer.span(name="Cats Vote")
         vote2 = r.get(button2).decode('utf-8')
-        tracer.span(name='Dogs Vote')
+        with tracer.span(name="Dogs Vote") as span:
+           print("Dogs Vote")
 
         # Return index with values
         return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
